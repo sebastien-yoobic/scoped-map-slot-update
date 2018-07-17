@@ -8,8 +8,15 @@
 
 </head>
 <body>
-
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
-
+  <button onclick="add()">Add Z</button>
+  <my-component></my-component>
+  
 </body>
+<script>
+  var comp = document.querySelector('my-component');
+
+  function add() {
+    comp.addItem('Z');
+  }
+</script>
 </html>

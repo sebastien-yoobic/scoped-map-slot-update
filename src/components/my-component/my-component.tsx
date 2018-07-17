@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, Method } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -7,14 +7,22 @@ import { Component, Prop } from '@stencil/core';
 })
 export class MyComponent {
 
-  @Prop() first: string;
-  @Prop() last: string;
+  @Prop({mutable: true}) items: Array<string> = ['a','b','c'];
+
+  @Method()
+  addItem(item: string){
+    this.items = [...this.items, item];
+  }
 
   render() {
     return (
-      <div>
-        Hello, World! I'm {this.first} {this.last}
-      </div>
+      <slot-map-comp>
+        {this.items.map(item =>
+            <div>
+              <span>{item}</span>
+            </div>
+        )}
+      </slot-map-comp>
     );
   }
 }

@@ -30,8 +30,8 @@ declare global {
 
   namespace StencilComponents {
     interface MyComponent {
-      'first': string;
-      'last': string;
+      'addItem': (item: string) => void;
+      'items': Array<string>;
     }
   }
 
@@ -54,8 +54,40 @@ declare global {
   }
   namespace JSXElements {
     export interface MyComponentAttributes extends HTMLAttributes {
-      'first'?: string;
-      'last'?: string;
+      'items'?: Array<string>;
+    }
+  }
+}
+
+
+declare global {
+
+  namespace StencilComponents {
+    interface SlotMapComp {
+
+    }
+  }
+
+  interface HTMLSlotMapCompElement extends StencilComponents.SlotMapComp, HTMLStencilElement {}
+
+  var HTMLSlotMapCompElement: {
+    prototype: HTMLSlotMapCompElement;
+    new (): HTMLSlotMapCompElement;
+  };
+  interface HTMLElementTagNameMap {
+    'slot-map-comp': HTMLSlotMapCompElement;
+  }
+  interface ElementTagNameMap {
+    'slot-map-comp': HTMLSlotMapCompElement;
+  }
+  namespace JSX {
+    interface IntrinsicElements {
+      'slot-map-comp': JSXElements.SlotMapCompAttributes;
+    }
+  }
+  namespace JSXElements {
+    export interface SlotMapCompAttributes extends HTMLAttributes {
+
     }
   }
 }
